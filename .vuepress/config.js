@@ -21,7 +21,7 @@ module.exports = {
     sidebarDepth: 1,
 
     nav: [
-      { text: 'Home', link: 'https://nova.laravel.com' },
+      { text: 'Home', link: 'https://zoroaster.netlify.com' },
       // {text: 'Version', link: '/', items: [{text: '1.0', link: '/1.0/'}]},
     ],
 
