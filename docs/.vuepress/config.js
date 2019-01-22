@@ -1,7 +1,7 @@
 module.exports = {
   // title: 'Laravel Nova',
   description: 'Master Your Universe',
-  base: '/docs/',
+  base: '/',
 
   head: [
     [
