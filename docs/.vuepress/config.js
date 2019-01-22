@@ -12,10 +12,20 @@ module.exports = {
         rel: 'stylesheet',
         type: 'text/css',
       },
+
     ],
+      [
+        'link',{
+        href:
+            'https://cdn.rawgit.com/rastikerdar/vazir-font/v19.0.0/dist/font-face.css',
+        rel: 'stylesheet',
+        type: 'text/css',
+      },
+      ]
   ],
 
   themeConfig: {
+    repo: 'https://github.com/KarimQaderi/zoroaster-docs',
     logo: '/assets/img/logo.svg',
     displayAllHeaders: true,
     sidebarDepth: 1,
@@ -28,5 +38,12 @@ module.exports = {
     sidebar: {
       '/1.0/': require('./1.0'),
     },
+
+
+    // defaults to false, set to true to enable
+    editLinks: true,
+    // custom text for edit link. Defaults to "Edit this page"
+    editLinkText: 'ویرایش این صفحه در GitHub'
+
   },
 }
