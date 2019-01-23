@@ -21,11 +21,11 @@ To learn more, let's take a look at a complete lens definition that displays use
 
 namespace App\Nova\Lenses;
 
-use Laravel\Nova\Fields\ID;
+use KarimQaderi\Zoroaster\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
+use KarimQaderi\Zoroaster\Fields\Text;
 use Laravel\Nova\Lenses\Lens;
-use Laravel\Nova\Fields\Number;
+use KarimQaderi\Zoroaster\Fields\Number;
 use Illuminate\Support\Facades\DB;
 use Laravel\Nova\Http\Requests\LensRequest;
 

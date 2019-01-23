@@ -1,45 +1,48 @@
-# Fields
+# فیلدها
 
 [[toc]]
 
-## Defining Fields
+## تعریف فیلدها 
 
-Each Nova resource contains a `fields` method. This method returns an array of fields, which generally extend the `Laravel\Nova\Fields\Field` class. Nova ships with a variety of fields out of the box, including fields for text inputs, booleans, dates, file uploads, Markdown, and more.
+هر **resource** یه  method به اسم `fields`  دارد و به صورت  array هست .
 
-To add a field to a resource, we can simply add it to the resource's `fields` method. Typically, fields may be created using their static `make` method. This method accepts several arguments; however, you usually only need to pass the "human readable" name of the field. Nova will automatically "snake case" this string to determine the underlying database column:
+برای اضافه کردن یک فیلد به **resource**، کافیه بصورت زیر اقدام کنید.
+
 
 ```php
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Text;
+use KarimQaderi\Zoroaster\Fields\ID;
+use KarimQaderi\Zoroaster\Fields\Text;
 
 /**
- * Get the fields displayed by the resource.
+ *  گرفتن فیلدها برای نمایش دادها
  *
- * @param  \Illuminate\Http\Request  $request
  * @return array
  */
-public function fields(Request $request)
+public function fields()
 {
     return [
         ID::make()->sortable(),
-        Text::make('Name')->sortable(),
+        Text::make('نام','name')->sortable(),
     ];
 }
 ```
 
-### Field Column Conventions
+### مقادیر ستون فیلد 
 
-As noted above, Nova will "snake case" the displayable name of the field to determine the underlying database column. However, if necessary, you may pass the column name as the second argument to the field's `make` method:
+وقتی یه فیلد رو می زارید باید دوتا پارامتر رو مشخص کنید.
+پارامتر اول برچسب هست می توانید هر چیزی رو بزارید.
+پارامتر دوم ماله نام ستونی که در داخل دیتابیس هست باید بنویسید
 
 ```php
-Text::make('Name', 'name_column')
+Text::make('label', 'name_column_in_database')
 ```
 
-## Showing / Hiding Fields
+## Showing / Hiding فیلدها 
 
-Often, you will only want to display a field in certain situations. For example, there is typically no need to show a `Password` field on a resource index listing. Likewise, you may wish to only display a `Created At` field on the creation / update forms. Nova makes it a breeze to hide / show fields on certain screens.
 
-The following methods may be used to show / hide fields based on the display context:
+اغلب شما فقط می خواهید فیلد را در شرایط خاص نمایش دهید. به عنوان مثال، معمولا نیازی به نشان دادن  فیلد رمز عبور در صفحه `index` نیست. 
+
+روش های زیر برای نشان دادن / مخفی کردن فیلد ها می توانید استفاده کنید.
 
 - `hideFromIndex`
 - `hideFromDetail`
@@ -50,229 +53,178 @@ The following methods may be used to show / hide fields based on the display con
 - `onlyOnForms`
 - `exceptOnForms`
 
-You may chain any of these methods onto your field's definition in order to instruct Nova where the field should be displayed:
+می توانید بصورت زیر استفاده کنید بصورت زنجیروار.
 
 ```php
-Text::make('Name')->hideFromIndex()
+Text::make('نام','name')->hideFromIndex()
 ```
 
-## Field Panels
+## مرتب کردن فیلد از نظر ظاهری 
 
-If your resource contains many fields, your resource "detail" screen can become crowded. For that reason, you may choose to break up groups of fields into their own "panels":
+ مرتب کردن فیلد ها در صفحه `from` و `detail`.
+
 
 ![Field Panel Example](./img/panels.png)
 
-You may do this by creating a new `Panel` instance within the `fields` method of a resource. Each panel requires a name and an array of fields that belong to that panel:
+برای مرتب کردن فیلد ها می توانید از موارد زیر استفاده کنید.
+
+- `Row`
+- `Col`
+- `Panel`
+- `RowOneCol`
+- `RowOneColBg`
+
+هر کدام از انها دارای مقادیر متفاوتی هست و بصورت زیر می توانید استفاده کنید.
+
+
+یک مثال ساده.
 
 ```php
-use Laravel\Nova\Panel;
+use KarimQaderi\Zoroaster\Fields\Group\Panel;
 
 /**
- * Get the fields displayed by the resource.
- *
- * @param  \Illuminate\Http\Request  $request
- * @return array
- */
-public function fields(Request $request)
-{
-    return [
-        ID::make()->sortable(),
-
-        new Panel('Address Information', $this->addressFields()),
-    ];
-}
-
-/**
- * Get the address fields for the resource.
+ *  گرفتن فیلدها برای نمایش دادها
  *
  * @return array
  */
-protected function addressFields()
+public function fields()
 {
     return [
-        Place::make('Address', 'address_line_1')->hideFromIndex(),
-        Text::make('Address Line 2')->hideFromIndex(),
-        Text::make('City')->hideFromIndex(),
-        Text::make('State')->hideFromIndex(),
-        Text::make('Postal Code')->hideFromIndex(),
-        Country::make('Country')->hideFromIndex(),
+    
+       new Panel('label' , [
+            ID::make()->sortable(),
+       ]) ,
+           
     ];
 }
 ```
 
-## Sortable Fields
-
-When attaching a field to a resource, you may use the `sortable` method to indicate that the resource index may be sorted by the given field:
+موارد دیگر و البته می توانید به صورت گروهیم ازشون استفاده کنید.
 
 ```php
-Text::make('Name', 'name_column')->sortable()
+use KarimQaderi\Zoroaster\Fields\Group\Col;
+use KarimQaderi\Zoroaster\Fields\Group\Panel;
+use KarimQaderi\Zoroaster\Fields\Group\Row;
+use KarimQaderi\Zoroaster\Fields\Group\RowOneCol;
+use KarimQaderi\Zoroaster\Fields\Group\RowOneColBg;
+
+/**
+ *  گرفتن فیلدها برای نمایش دادها
+ *
+ * @return array
+ */
+public function fields()
+{
+    return [
+    
+        new Row([
+           // Fields
+        ]),    
+        
+        new RowOneCol([
+           // Fields
+        ]),
+        
+        new RowOneColBg([
+            // Fields
+        ]),
+        
+        new Col('class for style css' , [
+            // Fields         
+        ]) ,
+        
+        new Panel('label' , [
+            // Fields
+        ]) ,
+          
+    ];
+}
 ```
 
-## Field Types
+## فیلدهای قابل مرتب شدن  
 
-:::tip Relationship Fields
+می توانید مشخص کنید که در داخل صفحه `index` چه فیلدهای قابلیت مرتب شدن رو داشته باشن بصورت صعودی و نزولی .
 
-This portion of the documentation only discusses non-relationship fields. To learn more about relationship fields, [check out their documentation](/1.0/resources/relationships.html).
+
+```php
+ID::make()->sortable()
+```
+
+## انواع فیلدها
+
+:::tip فیلدهای  Relationship 
+
+این قسمت از اسناد فقط زمینه های عدم ارتباط را مورد بحث قرار می دهد. برای کسب اطلاعات بیشتر در مورد زمینه ارتباطات،  [به این قسمت مراجعه کنید](/1.0/resources/relationships.html).
 :::
 
-Nova ships with a variety of field types. So, let's explore all of the available types and their options:
+می توانید از فیلدهای زیر استفاده کنید :
 
-- [Avatar](#avatar-field)
-- [Boolean](#boolean-field)
-- [Code](#code-field)
-- [Country](#country-field)
-- [Currency](#currency-field)
-- [Date](#date-field)
-- [DateTime](#datetime-field)
-- [File](#file-field)
-- [Gravatar](#gravatar-field)
-- [Heading](#heading-field)
-- [ID](#id-field)
-- [Image](#image-field)
-- [Markdown](#markdown-field)
-- [Number](#number-field)
-- [Password](#password-field)
-- [Place](#place-field)
-- [Select](#select-field)
-- [Status](#status-field)
-- [Text](#text-field)
-- [Textarea](#textarea-field)
-- [Timezone](#timezone-field)
-- [Trix](#trix-field)
+- [Boolean](#فیلد-boolean)
+- [Date](#فیلد-date)
+- [DateTime](#فیلد-datetime)
+- [File](#فیلد-file)
+- [Gravatar](#فیلد-gravatar)
+- [Heading](#فیلد-heading)
+- [ID](#فیلد-id)
+- [Image](#فیلد-image)
+- [Markdown](#فیلد-markdown)
+- [Number](#فیلد-number)
+- [Password](#فیلد-password)
+- [Place](#فیلد-place)
+- [Select](#فیلد-select)
+- [Status](#فیلد-status)
+- [Text](#فیلد-text)
+- [Textarea](#فیلد-textarea)
+- [Timezone](#فیلد-timezone)
+- [Trix](#فیلد-trix)
 
-### Avatar Field
 
-The `Avatar` field extends the [Image field](#image-field) and accepts the same options and configuration:
+###  فیلد Boolean 
+
+از این فیلد برای فعال یا غیرفعال مورد استفاده قرار می گیرد:
 
 ```php
-use Laravel\Nova\Fields\Avatar;
+use KarimQaderi\Zoroaster\Fields\Boolean;
 
-Avatar::make('Avatar')
+Boolean::make('وضعیت پست','status')
 ```
 
-If a resource contains an `Avatar` field, that field will be displayed next to the resource's title when the resource is displayed in search results:
+در داخل دیتابیس بصورت `0` و `1` ذخیره می شود
 
-![Avatar Search Results](./img/avatar-search-results.png)
 
-### Boolean Field
+###  فیلد Date 
 
-The `Boolean` field may be used to represent a boolean / "tiny integer" column in your database. For example, assuming your database has a boolean column named `active`, you may attach a `Boolean` field to your resource like so:
+فیلد `Date` ممکن است برای ذخیره یک مقدار تاریخ (بدون زمان) استفاده شود.
 
 ```php
-use Laravel\Nova\Fields\Boolean;
+use KarimQaderi\Zoroaster\Fields\Date;
 
-Boolean::make('Active')
+Date::make('تاریخ تولد','birthday')
 ```
 
-#### Customizing True / False Values
+####  فرمت های Date
 
-If you are using values other than `true`, `false`, `1`, or `0` to represent "true" and "false", you may instruct Nova to use the custom values recognized by your application. To accomplish this, chain the `trueValue` and `falseValue` methods onto your field's definition:
+شما می توانید قالب نمایش داده های خود را با استفاده از روش فرمت سفارشی کنید [flatpickr.js](https://flatpickr.js.org/formatting/#date-formatting-tokens):
 
 ```php
-Boolean::make('Active')
-        ->trueValue('On')
-        ->falseValue('Off');
+Date::make('تاریخ تولد','birthday')->format('d m'),
 ```
 
-### Code Field
+###  فیلد DateTime
 
-The `Code` fields provides a beautiful code editor within your Nova administration panel. Generally, code fields should be attached to `TEXT` database columns. However, you may also attach them to `JSON` database columns:
+این فیلد برای ذخیره تاریخ و زمان استفاده می شه :
+
 
 ```php
-use Laravel\Nova\Fields\Code;
+use KarimQaderi\Zoroaster\Fields\DateTime;
 
-Code::make('Snippet')
+DateTime::make('تاریخ آپدیت','updated_at')->hideFromIndex()
 ```
 
-:::tip Code Fields On The Index
-
-By default, Nova will never display a `Code` field on a resource index listing.
-:::
-
-#### Editing JSON
-
-If you intend to use a given `Code` field instance to only edit JSON, you may chain the `json` method onto your field definition:
+شما می توانید قالب نمایش داده های خود را با استفاده از روش فرمت سفارشی کنید [flatpickr.js](https://flatpickr.js.org/formatting/#date-formatting-tokens):
 
 ```php
-Code::make('Options')->json()
-```
-
-#### Syntax Highlighting
-
-You may customize the language syntax highlighting of the `Code` field using the `language` method:
-
-```php
-Code::make('Snippet')->language('php')
-```
-
-The `Code` field's currently supported languages are:
-
-- `dockerfile`
-- `javascript`
-- `markdown`
-- `nginx`
-- `php`
-- `ruby`
-- `sass`
-- `shell`
-- `vue`
-- `xml`
-- `yaml`
-
-### Country Field
-
-The `Country` field generates a `Select` field containing a list of the world's countries. The field will store the country's two-letter code:
-
-```php
-use Laravel\Nova\Fields\Country;
-
-Country::make('Country', 'country_code')
-```
-
-### Currency Field
-
-The `Currency` field generates a `Number` field that is automatically displayed using PHP's `money_format` function. You may specify the display format using the `format` method; otherwise, the `%i` format will be used:
-
-```php
-use Laravel\Nova\Fields\Currency;
-
-Currency::make('Price')
-
-Currency::make('Price')->format('%.2n');
-```
-
-### Date Field
-
-The `Date` field may be used to store a date value (without time). For more information about dates and timezones within Nova, check out the additional [date / timezone documentation](./date-fields.md):
-
-```php
-use Laravel\Nova\Fields\Date;
-
-Date::make('Birthday')
-```
-
-#### Date Formats
-
-You may customize the display format of your `Date` fields using the `format` method. The format must be a format supported by [Moment.js](https://momentjs.com/docs/#/parsing/string-format/):
-
-```php
-Date::make('Birthday')->format('DD MMM'),
-```
-
-### DateTime Field
-
-The `DateTime` field may be used to store a date-time value. For more information about dates and timezones within Nova, check out the additional [date / timezone documentation](./date-fields.md):
-
-```php
-use Laravel\Nova\Fields\DateTime;
-
-DateTime::make('Updated At')->hideFromIndex()
-```
-
-You may customize the display format of your `DateTime` fields using the `format` method. The format must be a format supported by [Moment.js](https://momentjs.com/docs/#/parsing/string-format/):
-
-```php
-Date::make('Created At')->format('DD MMM YYYY'),
+Date::make('تاریخ ساخت','created_at')->format('d m y'),
 ```
 
 ### File Field
@@ -280,7 +232,7 @@ Date::make('Created At')->format('DD MMM YYYY'),
 To learn more about defining file fields and handling uploads, check out the additional [file field documentation](./file-fields.md).
 
 ```php
-use Laravel\Nova\Fields\File;
+use KarimQaderi\Zoroaster\Fields\File;
 
 File::make('Attachment')
 ```
@@ -292,7 +244,7 @@ The `Gravatar` field does not correspond to any column in your application's dat
 By default, the Gravatar URL will be generated based on the value of the model's `email` column. However, if your user's email addresses are not stored in the `email` column, you may pass a custom column name to the field's `make` method:
 
 ```php
-use Laravel\Nova\Fields\Gravatar;
+use KarimQaderi\Zoroaster\Fields\Gravatar;
 
 // Using the "email" column...
 Gravatar::make()
@@ -327,7 +279,7 @@ Heading::make('<p class="text-danger">* All fields are required.</p>')->asHtml()
 The `ID` field represents the primary key of your resource's database table. Typically, each Nova resource you define should contain an `ID` field. By default, the `ID` field assumes the underlying database column is named `id`:
 
 ```php
-use Laravel\Nova\Fields\ID;
+use KarimQaderi\Zoroaster\Fields\ID;
 
 // Using the "id" column...
 ID::make()
@@ -344,7 +296,7 @@ ID::make()->asBigInt()
 The `Image` field extends the [File field](#file-field) and accepts the same options and configurations. The `Image` field, unlike the `File` field, will display a thumbnail preview of the underlying image when viewing the resource:
 
 ```php
-use Laravel\Nova\Fields\Image;
+use KarimQaderi\Zoroaster\Fields\Image;
 
 Image::make('Photo')
 ```
@@ -365,7 +317,7 @@ To learn more about defining file fields and handling uploads, check out the add
 The `Markdown` field provides a WYSIWYG Markdown editor for its associated field. Typically, this field will correspond to a `TEXT` column in your database. The `Markdown` field will store the raw Markdown text within the associated database column:
 
 ```php
-use Laravel\Nova\Fields\Markdown;
+use KarimQaderi\Zoroaster\Fields\Markdown;
 
 Markdown::make('Biography')
 ```
@@ -381,7 +333,7 @@ Markdown::make('Biography')->alwaysShow();
 The `Number` field provides an `input` control with a `type` attribute of `number`:
 
 ```php
-use Laravel\Nova\Fields\Number;
+use KarimQaderi\Zoroaster\Fields\Number;
 
 Number::make('price')
 ```
@@ -397,7 +349,7 @@ Number::make('price')->min(1)->max(1000)->step(0.01)
 The `Password` field provides an `input` control with a `type` attribute of `password`:
 
 ```php
-use Laravel\Nova\Fields\Password;
+use KarimQaderi\Zoroaster\Fields\Password;
 
 Password::make('Password')
 ```
@@ -426,7 +378,7 @@ The `Place` field leverages the power of the [Algolia Places API](https://commun
 Typically, a `Place` field will be defined alongside other related address fields. In this example, in order to keep our resource tidy, we will use the `merge` method to extract the address field definitions into their own method:
 
 ```php
-use Laravel\Nova\Fields\Place;
+use KarimQaderi\Zoroaster\Fields\Place;
 
 /**
  * Get the fields displayed by the resource.
@@ -511,7 +463,7 @@ Place::make('Address', 'address_line_1')
 The `Select` field may be used to generate a drop-down select menu. The select menu's options may be defined using the `options` method:
 
 ```php
-use Laravel\Nova\Fields\Select;
+use KarimQaderi\Zoroaster\Fields\Select;
 
 Select::make('Size')->options([
     'S' => 'Small',
@@ -539,7 +491,7 @@ The `Status` field may be used to display a "progress state" column. Internally,
 The `loadingWhen` and `failedWhen` methods may be used to instruct the field which words indicate a "loading" state and which words indicate a "failed" state. In this example, we will indicate that database column values of `waiting` or `running` should display a "loading" indicator:
 
 ```php
-use Laravel\Nova\Fields\Status;
+use KarimQaderi\Zoroaster\Fields\Status;
 
 Status::make('Status')
         ->loadingWhen(['waiting', 'running'])
@@ -551,7 +503,7 @@ Status::make('Status')
 The `Text` field provides an `input` control with a `type` attribute of `text`:
 
 ```php
-use Laravel\Nova\Fields\Text;
+use KarimQaderi\Zoroaster\Fields\Text;
 
 Text::make('Name')
 ```
@@ -569,7 +521,7 @@ Text::make('Name')->withMeta(['extraAttributes' => [
 The `Textarea` field provides a `textarea` control:
 
 ```php
-use Laravel\Nova\Fields\Textarea;
+use KarimQaderi\Zoroaster\Fields\Textarea;
 
 Textarea::make('Biography')
 ```
@@ -599,7 +551,7 @@ Textarea::make('Excerpt')->withMeta(['extraAttributes' => [
 The `Timezone` field generates a `Select` field containing a list of the world's timezones:
 
 ```php
-use Laravel\Nova\Fields\Timezone;
+use KarimQaderi\Zoroaster\Fields\Timezone;
 
 Timezone::make('Timezone')
 ```
@@ -609,7 +561,7 @@ Timezone::make('Timezone')
 The `Trix` field provides a [Trix editor](https://github.com/basecamp/trix) for its associated field. Typically, this field will correspond to a `TEXT` column in your database. The `Trix` field will store its corresponding HTML within the associated database column:
 
 ```php
-use Laravel\Nova\Fields\Trix;
+use KarimQaderi\Zoroaster\Fields\Trix;
 
 Trix::make('Biography')
 ```
@@ -625,7 +577,7 @@ Trix::make('Biography')->alwaysShow();
 If you would like to allow users to drag-and-drop photos into the Trix field, chain the `withFiles` method onto the field's definition. When calling the `withFiles` method, you should pass the name of the [filesystem disk](https://laravel.com/docs/filesystem) that photos should be stored on:
 
 ```php
-use Laravel\Nova\Fields\Trix;
+use KarimQaderi\Zoroaster\Fields\Trix;
 
 Trix::make('Biography')->withFiles('public')
 ```

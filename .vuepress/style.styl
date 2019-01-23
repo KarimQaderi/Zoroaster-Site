@@ -1,6 +1,69 @@
+*
+   font-family: 'Vazir' !important;
+
+
 body
   background-color #eee
   font-family "Nunito"
+  direction: rtl;
+
+a.header-anchor
+    float: right;
+    margin: 0;
+    margin-left: .23em;
+    margin-top: 0.125em;
+
+.table-of-contents a:before
+    margin-left: 3px !important;
+    margin-right: -15px !important;
+
+.navbar .links
+    left: 1.5rem;
+    right: auto;
+
+.search-box
+    margin-left: 1rem;
+    margin-right: auto;
+
+.sidebar-button
+    right: 1rem;
+    left: auto;
+
+.navbar .logo
+    margin-right: 36px;
+
+.extra-class pre
+    direction: ltr;
+
+.sidebar .sidebar-sub-headers
+    padding-right: 1rem;
+    padding-left: inherit;
+
+#app a.sidebar-link {
+    border-right: 0.125rem solid #ff000000  !important;
+    border-left: 0;
+}
+
+#app a.sidebar-link.active{
+    border-right-color: rgba(255,255,255,0.5) !important;
+}
+
+#app .sidebar-group a.sidebar-link {
+    padding-right: 1.5rem;
+    padding-left: inherit;
+}
+
+#app .sidebar-group:not(.collapsable) .sidebar-heading, #app .sidebar-heading {
+    color: #ffffff !important;;
+}
+
+.sidebar-group-items > li > a:nth-child(1) {
+    font-weight: bold !important;
+}
+
+#app a.sidebar-link {
+    border-left: 0 !important;
+}
 
 /* Headings
 -----------------------------------------------------------------------------*/
@@ -14,14 +77,24 @@ h1
 h2
   border-bottom 0
 
+.page-nav .next {
+    float: none;
+}
+
+.page-nav .prev {
+    float: left;
+}
+
 /* Page
 -----------------------------------------------------------------------------*/
+.page {
+
+    padding-left: inherit;
+}
 @media (min-width 720px)
   .page
-    padding-left 13.75rem
+    padding-right 13.75rem
 
-  .page-edit
-    display none
 
   .page-nav
     padding 0
@@ -29,6 +102,11 @@ h2
   .page-nav > .inner
     padding 0
     border-top none
+
+ @media (max-width: 959px)
+   .page
+     padding-right: 16.4rem  !important;
+
 
 /* Navbar
 -----------------------------------------------------------------------------*/
@@ -45,12 +123,18 @@ h2
 
 /* Sidebar
 -----------------------------------------------------------------------------*/
+
+.sidebar {
+    right: 0;
+    left: auto;
+}
+
 #app
   .sidebar
-    width 13.75rem
+    width 18.75rem
     border-right none
     background-color transparent
-    background-image linear-gradient(0deg, #7e8ea1 0%, #3c4655 100%)
+    background: linear-gradient(rgb(11, 111, 198) 0%, rgb(64, 153, 222) 100%);
 
   .sidebar-heading
     padding 0 1.7rem
@@ -95,6 +179,18 @@ h2
   @media (max-width 719px)
     .nav-links a.nav-link, .nav-links a.repo-link
       color #fff
+
+  @media (max-width: 719px)
+     .sidebar
+          top: 0;
+          padding-top: 3.6rem;
+          transform: translateX(100%);
+          transition: transform 0.2s ease;
+
+  @media (max-width: 719px)
+      .theme-container.sidebar-open .sidebar
+                                           transform: translateX(0);
+
 
 /* Sidebar ul, li, a, div spacing
 -----------------------------------------------------------------------------*/

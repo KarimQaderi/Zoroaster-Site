@@ -39,7 +39,7 @@ public static function singularLabel()
 Field names may be localized when you attach the field to your resource. The first argument to all fields is its display name, which you may customize. For example, you might localize the title of an email address field like so:
 
 ```php
-use Laravel\Nova\Fields\Text;
+use KarimQaderi\Zoroaster\Fields\Text;
 
 Text::make(__('Email Address'), 'email_address')
 ```
@@ -50,7 +50,7 @@ Relationship field names may be customized by localizing the first argument pass
 
 ```php
 use App\Nova\Post;
-use Laravel\Nova\Fields\HasMany;
+use KarimQaderi\Zoroaster\Fields\HasMany;
 
 HasMany::make(__('Posts'), 'posts', Post::class)
 ```

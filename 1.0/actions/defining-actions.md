@@ -33,7 +33,7 @@ use App\AccountData;
 use Illuminate\Bus\Queueable;
 use Laravel\Nova\Actions\Action;
 use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\ActionFields;
+use KarimQaderi\Zoroaster\Fields\ActionFields;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -45,7 +45,7 @@ class EmailAccountProfile extends Action
     /**
      * Perform the action on the given models.
      *
-     * @param  \Laravel\Nova\Fields\ActionFields  $fields
+     * @param  \KarimQaderi\Zoroaster\Fields\ActionFields  $fields
      * @param  \Illuminate\Support\Collection  $models
      * @return mixed
      */
@@ -87,7 +87,7 @@ Sometimes you may wish to gather additional information from the user before dis
 To add a field to an action, add the field to the array of fields returned by the action's `fields` method:
 
 ```php
-use Laravel\Nova\Fields\Text;
+use KarimQaderi\Zoroaster\Fields\Text;
 
 /**
  * Get the fields available on the action.
@@ -108,7 +108,7 @@ Finally, within your action's `handle` method, you may access your fields using 
 /**
  * Perform the action on the given models.
  *
- * @param  \Laravel\Nova\Fields\ActionFields  $fields
+ * @param  \KarimQaderi\Zoroaster\Fields\ActionFields  $fields
  * @param  \Illuminate\Support\Collection  $models
  * @return mixed
  */
@@ -130,7 +130,7 @@ To display a custom "success" message, you may return the result of the `Action:
 /**
  * Perform the action on the given models.
  *
- * @param  \Laravel\Nova\Fields\ActionFields  $fields
+ * @param  \KarimQaderi\Zoroaster\Fields\ActionFields  $fields
  * @param  \Illuminate\Support\Collection  $models
  * @return mixed
  */
@@ -177,7 +177,7 @@ use App\AccountData;
 use Illuminate\Bus\Queueable;
 use Laravel\Nova\Actions\Action;
 use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\ActionFields;
+use KarimQaderi\Zoroaster\Fields\ActionFields;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -252,7 +252,7 @@ While a queued action is running, you may update the action's "status" for any o
 /**
  * Perform the action on the given models.
  *
- * @param  \Laravel\Nova\Fields\ActionFields  $fields
+ * @param  \KarimQaderi\Zoroaster\Fields\ActionFields  $fields
  * @param  \Illuminate\Support\Collection  $models
  * @return mixed
  */
@@ -272,7 +272,7 @@ Or, if you would like to indicate that an action has "failed" for a given model,
 /**
  * Perform the action on the given models.
  *
- * @param  \Laravel\Nova\Fields\ActionFields  $fields
+ * @param  \KarimQaderi\Zoroaster\Fields\ActionFields  $fields
  * @param  \Illuminate\Support\Collection  $models
  * @return mixed
  */

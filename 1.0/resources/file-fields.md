@@ -13,7 +13,7 @@ To illustrate the behavior of Nova file upload fields, let's assume our applicat
 Next, let's attach the file field to our `User` resource. In this example, we will create the field and instruct it to store the underlying file on the `public` disk. This disk name should correspond to a disk name in your `config/filesystems.php` configuration file:
 
 ```php
-use Laravel\Nova\Fields\File;
+use KarimQaderi\Zoroaster\Fields\File;
 
 File::make('Profile Photo')->disk('public')
 ```
@@ -66,7 +66,7 @@ The documentation above only demonstrates the default behavior of the `File` fie
 The `Image` field behaves exactly like the `File` field; however, instead of only displaying the path to the file within the Nova dashboard, an `Image` field will show a thumbnail preview of the underlying file. All of the configuration and customization options of the `Image` field mirror that of the `File` field:
 
 ```php
-use Laravel\Nova\Fields\Image;
+use KarimQaderi\Zoroaster\Fields\Image;
 
 Image::make('Profile Photo')->disk('public')
 ```
@@ -84,7 +84,7 @@ You can also use the `maxWidth` method on the [Avatar](#avatars) and [Gravatar](
 The `Avatar` field behaves exactly like the `File` field; however, instead of only displaying the path to the file within the Nova dashboard, an `Avatar` field will show a thumbnail preview of the underlying file. All of the configuration and customization options of the `Avatar` field mirror that of the `File` field:
 
 ```php
-use Laravel\Nova\Fields\Avatar;
+use KarimQaderi\Zoroaster\Fields\Avatar;
 
 Avatar::make('Poster')->disk('public')
 ```
@@ -99,8 +99,8 @@ In addition to storing the path to the file within the storage system, you may a
 
 ```php
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\File;
-use Laravel\Nova\Fields\Text;
+use KarimQaderi\Zoroaster\Fields\File;
+use KarimQaderi\Zoroaster\Fields\Text;
 
 /**
  * Get the fields displayed by the resource.
@@ -318,7 +318,7 @@ By default, Nova will use the `Storage::url` method to determine the URL that sh
 The `preview` method accepts a callable which should return the preview URL. The field's underlying column value is passed to the callable as the first parameter, while the name of the field's storage disk is passed as the second parameter:
 
 ```php
-use Laravel\Nova\Fields\Image;
+use KarimQaderi\Zoroaster\Fields\Image;
 use Illuminate\Support\Facades\Storage;
 
 Image::make('Profile Photo')
@@ -342,7 +342,7 @@ By default, Nova will use the `Storage::url` method to determine the URL that sh
 The `thumbnail` method accepts a callable which should return the thumbnail URL. The field's underlying column value is passed to the callable as the first parameter, while the name of the field's storage disk is passed as the second parameter:
 
 ```php
-use Laravel\Nova\Fields\Image;
+use KarimQaderi\Zoroaster\Fields\Image;
 use Illuminate\Support\Facades\Storage;
 
 Image::make('Profile Photo')

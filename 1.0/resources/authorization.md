@@ -218,8 +218,8 @@ public static function authorizable()
 Sometimes you may want to hide certain fields from a group of users. You may easily accomplish this by chaining the `canSee` method onto your field definition. The `canSee` method accepts a Closure which should return `true` or `false`. The Closure will receive the incoming HTTP request:
 
 ```php
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Text;
+use KarimQaderi\Zoroaster\Fields\ID;
+use KarimQaderi\Zoroaster\Fields\Text;
 
 /**
  * Get the fields displayed by the resource.

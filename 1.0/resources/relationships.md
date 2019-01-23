@@ -11,7 +11,7 @@ In addition to the variety of fields we've already discussed, Nova has full supp
 The `HasOne` field corresponds to a `hasOne` Eloquent relationship. For example, let's assume a `User` model `hasOne` `Address` model. We may add the relationship to our `User` Nova resource like so:
 
 ```php
-use Laravel\Nova\Fields\HasOne;
+use KarimQaderi\Zoroaster\Fields\HasOne;
 
 HasOne::make('Address')
 ```
@@ -27,7 +27,7 @@ HasOne::make('Dirección', 'address')
 The `HasMany` field corresponds to a `hasMany` Eloquent relationship. For example, let's assume a `User` model `hasMany` `Post` models. We may add the relationship to our `User` Nova resource like so:
 
 ```php
-use Laravel\Nova\Fields\HasMany;
+use KarimQaderi\Zoroaster\Fields\HasMany;
 
 HasMany::make('Posts')
 ```
@@ -52,7 +52,7 @@ HasMany::make('Post');
 The `BelongsTo` field corresponds to a `belongsTo` Eloquent relationship. For example, let's assume a `Post` model `belongsTo` a `User` model. We may add the relationship to our `Post` Nova resource like so:
 
 ```php
-use Laravel\Nova\Fields\BelongsTo;
+use KarimQaderi\Zoroaster\Fields\BelongsTo;
 
 BelongsTo::make('User')
 ```
@@ -71,7 +71,7 @@ BelongsTo::make('Author', 'author', 'App\Nova\User');
 If you would like your `BelongsTo` relationship to be `nullable`, chain the `nullable` method onto the field's definition:
 
 ```php
-use Laravel\Nova\Fields\BelongsTo;
+use KarimQaderi\Zoroaster\Fields\BelongsTo;
 
 BelongsTo::make('User')->nullable()
 ```
@@ -107,7 +107,7 @@ public function title()
 The `BelongsToMany` field corresponds to a `belongsToMany` Eloquent relationship. For example, let's assume a `User` model `belongsToMany` `Role` models. We may add the relationship to our `User` Nova resource like so:
 
 ```php
-use Laravel\Nova\Fields\BelongsToMany;
+use KarimQaderi\Zoroaster\Fields\BelongsToMany;
 
 BelongsToMany::make('Roles')
 ```
@@ -153,7 +153,7 @@ In this example, the `RoleUserFields` class would be a simple, invokable class t
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\Text;
+use KarimQaderi\Zoroaster\Fields\Text;
 
 class RoleUserFields
 {
@@ -222,7 +222,7 @@ public function title()
 The `MorphMany` field corresponds to a `morphMany` Eloquent relationship. For example, let's assume a `Post` has a one-to-many polymorphic relationship with the `Comment` model. We may add the relationship to our `Post` Nova resource like so:
 
 ```php
-use Laravel\Nova\Fields\MorphMany;
+use KarimQaderi\Zoroaster\Fields\MorphMany;
 
 MorphMany::make('Comments')
 ```
@@ -234,7 +234,7 @@ The `MorphTo` field corresponds to a `morphTo` Eloquent relationship. For exampl
 ```php
 use App\Nova\Post;
 use App\Nova\Video;
-use Laravel\Nova\Fields\MorphTo;
+use KarimQaderi\Zoroaster\Fields\MorphTo;
 
 MorphTo::make('Commentable')->types([
     Post::class,
@@ -258,7 +258,7 @@ If you would like your `MorphTo` relationship to be `nullable`, chain the `nulla
 ```php
 use App\Nova\Post;
 use App\Nova\Video;
-use Laravel\Nova\Fields\MorphTo;
+use KarimQaderi\Zoroaster\Fields\MorphTo;
 
 MorphTo::make('Commentable')->types([
     Post::class,
@@ -271,7 +271,7 @@ MorphTo::make('Commentable')->types([
 The `MorphToMany` field corresponds to a `morphToMany` Eloquent relationship. For example, let's assume a `Post` has a many-to-many polymorphic relationship with the `Tag` model. We may add the relationship to our `Post` Nova resource like so:
 
 ```php
-use Laravel\Nova\Fields\MorphToMany;
+use KarimQaderi\Zoroaster\Fields\MorphToMany;
 
 MorphToMany::make('Tags')
 ```
@@ -315,7 +315,7 @@ In this example, the `TaggableFields` class would be a simple, invokable class t
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\Text;
+use KarimQaderi\Zoroaster\Fields\Text;
 
 class TaggableFields
 {

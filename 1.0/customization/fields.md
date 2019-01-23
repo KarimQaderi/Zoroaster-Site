@@ -50,7 +50,7 @@ Often, you will need to allow the consumer's of your field to customize run-time
 
 namespace Acme\ColorPicker;
 
-use Laravel\Nova\Fields\Field;
+use KarimQaderi\Zoroaster\Fields\Field;
 
 class ColorPicker extends Field
 {
@@ -133,7 +133,7 @@ By default, when saving a model, your field class will simply copy the incoming 
 
 namespace Otwell\ColorPicker;
 
-use Laravel\Nova\Fields\Field;
+use KarimQaderi\Zoroaster\Fields\Field;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class ColorPicker extends Field
