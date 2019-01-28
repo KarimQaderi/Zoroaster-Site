@@ -1,6 +1,6 @@
 module.exports = {
-  // title: 'Laravel Nova',
-  description: 'Master Your Universe',
+  title: 'پنل زرتشت',
+  // description: 'Me',
   base: '/',
 
   head: [
@@ -26,17 +26,17 @@ module.exports = {
 
   themeConfig: {
     repo: 'https://github.com/KarimQaderi/zoroaster-docs',
-    logo: '/assets/img/logo.svg',
+    // logo: '/assets/img/logo.svg',
     displayAllHeaders: true,
     sidebarDepth: 1,
 
     nav: [
-      { text: 'Home', link: 'https://zoroaster.netlify.com' },
-      // {text: 'Version', link: '/', items: [{text: '1.0', link: '/1.0/'}]},
+      { text: 'مستندات', link: '/docs/1.0/installation.html' },
+      { text: 'پکیج ها', link: '/packages.html' },
     ],
 
     sidebar: {
-      '/1.0/': require('./1.0'),
+      '/docs/1.0/': require('./1.0'),
     },
 
 
@@ -46,4 +46,7 @@ module.exports = {
     editLinkText: 'ویرایش این صفحه در GitHub'
 
   },
+
+  plugins: ['@vuepress/last-updated']
+
 }

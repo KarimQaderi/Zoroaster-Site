@@ -1,6 +1,17 @@
 *
    font-family: 'Vazir' !important;
 
+.welcome .content a
+    padding: 5px 15px;
+    display: inline-block;
+    background-color: #4099de;
+    color: #fff;
+    border-radius: 2px;
+
+.welcome .content a:hover {
+    text-decoration: none;
+    opacity: .8;
+}
 
 body
   background-color #eee
@@ -121,6 +132,10 @@ h2
 .nav-link, .repo-link
   font-weight 800
 
+.nav-links .nav-item {
+    margin-left: 1.5rem !important;
+}
+
 /* Sidebar
 -----------------------------------------------------------------------------*/
 
@@ -231,9 +246,7 @@ h6 .header-anchor:hover
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05)
 }
 
-.content img {
-  zoom: 50%;
-}
+
 
 /* TOC
 -----------------------------------------------------------------------------*/
@@ -346,3 +359,114 @@ div[class*="language-"]:before
 
 .token.comment, .token.block-comment, .token.prolog, .token.doctype, .token.cdata
   color #bbb
+
+/* Page LayoutPackage
+-----------------------------------------------------------------------------*/
+.page.LayoutPackage {
+    padding: 0;
+    background-color: white;
+    margin: auto;
+    max-width: 900px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.LayoutPackage .content {
+    padding: 10px !important;
+    margin: 0;
+    max-width: none;
+    font-size: 15px;
+}
+
+.LayoutPackage p {
+    margin: auto !important;
+}
+
+.LayoutPackage h1 {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px;
+    color: #4099de;
+    margin: 0;
+}
+
+.LayoutPackage > .dic {
+    margin-bottom: 15px;
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+
+.LayoutPackage > .dic>span {
+    margin-right: 30px;
+}
+
+.page.LayoutPackage {
+    border-radius: 2px;
+    box-shadow: 0 0 9px #0000000a;
+}
+
+.LayoutPackage div[class*="language-"] {
+    background-color: #00000005;
+}
+
+
+/* Page Packages
+-----------------------------------------------------------------------------*/
+.packages .page {
+    padding: 0;
+}
+
+.packages .content {
+    padding: 20px;
+    max-width: none;
+}
+
+.list_item {
+    display: inline-block;
+    width: 320px;
+    height: 274px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 2px;
+    box-shadow: 0 0 6px #0000000d;
+    position: relative;
+    border-top: 3px solid #4099de;
+}
+
+.list_body {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.list_item h2 {
+    padding: 10px;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #636363;
+}
+
+.list_footer {
+    padding: 10px;
+    background-color: #f8fafc;
+    border-top: 1px solid #d2d2d2;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.list_item h3 {
+    height: 165px;
+    font-size: 15px;
+    padding: 5px;
+    margin: 0;
+    overflow: hidden;
+}
+
+.list_item a.more {
+    float: left;
+}
