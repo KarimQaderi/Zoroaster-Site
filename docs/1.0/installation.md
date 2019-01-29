@@ -29,40 +29,15 @@ DB_PASSWORD=secret
 ```
 ## نصب زرتشت 
 
- فایل `composer.json` باز کنید و کد زیر رو قرار دهید
-
-```json
-"repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/KarimQaderi/Zoroaster.git"
-        }
-],
-```
-
-بعد `karim-qaderi/zoroaster` رو اضافه کنید به قسمت `require` در فایل `composer.json` : ‍‍‍‍‍‍
-
-```json
-"require": {
-    "php": "^7.1.3",
-    "fideloper/proxy": "^4.0",
-    "laravel/framework": "5.7.*",
-    "karim-qaderi/zoroaster": "*"
-},
-```
-
- حالا terminal رو باز کنید و `composer update` اجرا کنید :
+ حالا terminal رو باز کنید و کدهای زیر رو اجرا کنید :
 
 ```bash
-composer update
-```
-و در آخر  `Zoroaster:install` رو اجرا کنید در terminal :
-
-```bash
+composer require karim-qaderi/zoroaster
 php artisan Zoroaster:install
 php artisan migrate
 php artisan storage:link
 ```
+
 ::: danger
 **Specified key was too long error**  
 اگر با همچین خطای رو به رو شدید به این قسمت مراجعه کنید: [https://laravel-news.com/laravel-5-4-key-too-long-error](https://laravel-news.com/laravel-5-4-key-too-long-error)
