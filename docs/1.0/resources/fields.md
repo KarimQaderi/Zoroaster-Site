@@ -175,6 +175,7 @@ ID::make()->sortable()
 - [Text](#فیلد-text)
 - [Textarea](#فیلد-textarea)
 - [Trix](#فیلد-trix)
+- [PivotCheckBox](#فیلد-pivotcheckbox)
 
 
 ###  فیلد Boolean 
@@ -355,6 +356,49 @@ use KarimQaderi\Zoroaster\Fields\Trix;
 
 Trix::make('متن پست','body')
 ```
+
+
+
+### فیلد PivotCheckBox
+
+```php
+PivotCheckBox::make('دسته بندی' , 'Categorie')
+                                    ->show('App\\Models\\Categorie' , 'title' , 'id')
+                                    ->pivot('App\\Models\\CategoriePivot' , 'post_id' , 'categorie_id');
+```
+
+**خط اول**
+
+| نام دلخواه | نام دلخواه به انگلیسی |
+| ------ | ------ |
+| دسته بندی | Categorie |
+
+<br><br>
+
+**خط دوم show**
+
+اطلاعات جدولی که قرار نشون داده بشه
+
+| ادرس Model | ستونی که قرار نشون داده بشه | ایدی اصلی جدول
+| ------ | ------ | ------ |
+| App\\Models\\Categorie | title | id
+
+<br><br>
+
+**خط سوم pivot**
+
+جدولی که داده ها در اون ذخیره می شود
+
+| ادرس Model | نام کلید خارجی مربوط به Resource | کلید خارجی مربوط به خط دوم show
+| ------ | ------ | ------ |
+| App\\Models\\CategoriePivot | post_id | categorie_id
+
+
+<br>
+
+![](./img/PivotCheckBox.png)
+
+
 
 
 ## سفارشی سازی

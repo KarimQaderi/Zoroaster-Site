@@ -35,7 +35,7 @@ DB_PASSWORD=secret
 "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/KarimQaderi/zoroaster-docs.git"
+            "url": "https://github.com/KarimQaderi/Zoroaster.git"
         }
 ],
 ```
@@ -60,6 +60,8 @@ composer update
 
 ```bash
 php artisan Zoroaster:install
+php artisan migrate
+php artisan storage:link
 ```
 ::: danger
 **Specified key was too long error**  

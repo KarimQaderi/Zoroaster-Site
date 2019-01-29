@@ -1,51 +1,82 @@
 ---
 layout: LayoutPackage
-tags: ["vuepress", "vuejs"]
-authorName: کریم 
+date: 2019/01/29
+tags: ["resource", "menu"]
+authorName: Karim Qaderi 
 authorUrl: https://github.com/KarimQaderi
-packageUrl: https://github.com/KarimQaderi/packageUrl
-title: Nova - Cache Management Card
-description: لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+packageUrl: https://github.com/KarimQaderi/Zoroaster-Menu-Builder
+title: Menu Builder
+description:  برای ساخت منو می توانید ازش استفاده کنید
 ---
 
+## Zoroaster Menu Builder
 
-# Laravel Nova - Cache Management Card
+![Zoroaster Menu Builder](https://raw.githubusercontent.com/KarimQaderi/Zoroaster-Menu-Builder/master/img/img.png)
 
-Manage your application's cache from a handy Laravel Nova dashboard card.
 
-## Installation
 
-You can install the package in to any app running [Laravel Nova](https://nova.laravel.com) via Composer:
+## نصب 
 
-```bash
-composer require vink/nova-cache-card
+فایل composer.json باز کنید و کد زیر رو قرار دهید :
+
+```json
+    "require": {
+        "karim-qaderi/zoroaster-menu-builder": "*"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/KarimQaderi/Zoroaster-Menu-Builder.git"
+        }
+    ],
 ```
 
-Once installed, you need to add the card to your `NovaServiceProvider.php` file:
+بعد کدای زیر رو به ترتیب اجرا کنید :
+
+```bash
+composer update
+
+php artisan vendor:publish --tag=menu-builder-migration
+php artisan migrate
+
+php artisan vendor:publish --tag=menu-builder-assets
+```
+
+
+## Helper Function
 
 ```php
-// in app/Providers/NovaServiceProvder.php
+{!! menu_builder('main') !!}
 
-// ...
+//or
 
-public function cards()
+{!! menu_builder('main', 'parent-class', 'child-class', 'dl', 'dd') !!}
+```
+
+```php
+{!! menu_json('main') !!}
+```
+
+
+
+## سطع دسترسی کلی 
+
+برای اینکه سطع دسترسی رو بزارید فایل `app/Providers/ZoroasterServiceProvider.php` رو باز کنید کد زیر رو در `boot` قرار دهید. 
+
+```php
+/**
+ * Bootstrap any application services.
+ *
+ * @return void
+ */
+protected function boot()
 {
-    return [
-        // ...
-        new \Vink\CacheCard\CacheCard(),
-    ];
+    Gate::define('ZoroasterMenuBuilder', function ($user) {
+        return in_array($user->email, [
+            'karimqaderi1@gmail.com',
+        ]);
+    });
 }
 ```
 
-## Usage
-
-A new card will appear on your dashboard giving you control over your applications *default* cache driver. From the card, you can **get** values from the cache, **forget** values from the cache, or even **flush** the whole thing.
-
-![Card Preview](http://dcv.io/projects/nova-cache-card/cache_card.png)
-
-![Cache Viewer](http://dcv.io/projects/nova-cache-card/cache_view.png)
-
-## Important Note
-
-This is an administrative tool used to manage your applications caching. It is **up to YOU** to ensure this card is properly gated for appropriate administrators only. [Fortunately, Nova makes this easy](https://nova.laravel.com/docs/1.0/customization/cards.html#authorization). I am in no way responsible if you manage to flush *very important* cache items down the toilet.
 
