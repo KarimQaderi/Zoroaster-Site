@@ -9,10 +9,9 @@ title: backup tool
 description: پشتیبان گیری از دیتابیس و پایگاه داده
 ---
 
+## backup your application
 
-## Cache Management
-
-![](https://raw.githubusercontent.com/KarimQaderi/Zoroaster-cache-card/master/1.png)
+![](https://raw.githubusercontent.com/KarimQaderi/Zoroaster-backup-tool/master/1.png)
 
 ## نصب 
 
@@ -20,12 +19,12 @@ description: پشتیبان گیری از دیتابیس و پایگاه داد�
 
 ```json
     "require": {
-        "karim-qaderi/zoroaster-cache-card": "*"
+        "karim-qaderi/zoroaster-backup-tool": "*"
     },
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/KarimQaderi/Zoroaster-cache-card.git"
+            "url": "https://github.com/KarimQaderi/Zoroaster-backup-tool.git"
         }
     ],
 ```
@@ -34,21 +33,6 @@ description: پشتیبان گیری از دیتابیس و پایگاه داد�
 composer update
 ```
 
-## استفاده 
-
-```php
-// in app\Zoroaster\Other\Dashboard.php
-
-// ...
-
-public function handle()
-{
-    return [
-        // ...
-        new \KarimQaderi\ZoroasterCacheCard\CacheCard(),
-    ];
-}
-```
 
 
 ## سطع دسترسی 
@@ -63,7 +47,7 @@ public function handle()
  */
 protected function boot()
 {
-    Gate::define('Zoroaster-cache-card', function ($user) {
+    Gate::define('Zoroaster-backup-tool', function ($user) {
         return in_array($user->email, [
             'karimqaderi1@gmail.com',
         ]);
