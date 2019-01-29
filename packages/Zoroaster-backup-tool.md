@@ -1,12 +1,12 @@
 ---
 layout: LayoutPackage
 date: 2019/01/29
-tags: ["card", "cache-management","dashboard"]
+tags: ["resource", "zoroaster-backup-tool","backup"]
 authorName: Karim Qaderi 
 authorUrl: https://github.com/KarimQaderi
-packageUrl: https://github.com/KarimQaderi/Zoroaster-cache-card
-title: Cache Management
-description:  خالی کردن کش
+packageUrl: https://github.com/KarimQaderi/Zoroaster-backup-tool
+title: backup tool
+description: پشتیبان گیری از دیتابیس و پایگاه داده
 ---
 
 
