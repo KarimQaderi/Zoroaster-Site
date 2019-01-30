@@ -80,6 +80,165 @@ protected function boot()
 }
 ```
 
+## فعال کردن resource مجوزها 
+
+با فعال کردن این شما می توانید مشخص کنید هر کاربر چه مجوزهای داشته باشه.
+
+```bash
+php artisan Zoroaster:Permission
+```
+
+حالا به Model User رفته و کد زیر را قرار بدید.
+
+```php
+<?php
+
+    namespace App;
+
+    use KarimQaderi\Zoroaster\Traits\HasPermissions;
+
+    class User extends Authenticatable
+    {
+        use HasPermissions;
+    }
+```
+
+وقتی کارهای بالا رو انجام دادید برای اینکه مجوز برای کاربر ادمین بسازید از کد پایین استفاده کنید.
+
+اگر کاربر از قبل وجود داشت براتون اپدیت می کنه وگرنه کاربر رو براتون می سازه.
+
+
+```bash
+php artisan Zoroaster:admin
+```
+
+حالا شما الان باید بتونید وارد قسمت ادمین بشید.
+
+حالا به این مسیر برید `app/Zoroaster/Resources/User.php` و این فیلد رو قرار بدید.
+
+```php
+use KarimQaderi\Zoroaster\Fields\Select;
+
+public function fields()
+{
+    return [
+           Select::make('role_id' , 'role_id')->options(\KarimQaderi\Zoroaster\Models\Role::all()->pluck('name','id')),
+    ]
+}
+```
+
+یا می توانید کل کد پایین رو جایگزین کنید:
+```php
+<?php
+
+    namespace App\Zoroaster\Resources;
+    
+    use Illuminate\Database\Eloquent\Model;
+    use KarimQaderi\Zoroaster\Abstracts\ZoroasterResource;
+    use KarimQaderi\Zoroaster\Fields\btnSave;
+    use KarimQaderi\Zoroaster\Fields\Group\Col;
+    use KarimQaderi\Zoroaster\Fields\Group\Panel;
+    use KarimQaderi\Zoroaster\Fields\Group\Row;
+    use KarimQaderi\Zoroaster\Fields\Group\RowOneColBg;
+    use KarimQaderi\Zoroaster\Fields\ID;
+    use KarimQaderi\Zoroaster\Fields\Password;
+    use KarimQaderi\Zoroaster\Fields\Select;
+    use KarimQaderi\Zoroaster\Fields\Text;
+    use KarimQaderi\Zoroaster\Models\Role;
+
+
+    class User extends ZoroasterResource
+    {
+
+        /**
+         * مربوطه Model نام
+         *
+         * @var Model
+         */
+        public static $model = 'App\\User';
+
+        /**
+         * دادن نمایش برای پیشفرض فیلد نام
+         *
+         * @var string
+         */
+        public $title = 'name';
+
+        /**
+         * جمع بصورت Resource نام
+         *
+         * مثال : ها پست
+         *
+         * @var string
+         */
+        public $label = 'کاربران';
+
+        /**
+         * فرد بصورت Resource نام
+         *
+         * مثال : پست
+         *
+         * @var string
+         */
+        public $singularLabel = 'کاربر';
+
+        /**
+         * جستحو قابل های فیلد
+         *
+         * @var array
+         */
+        public $search = [
+            'name' , 'id' ,
+        ];
+
+        /**
+         * دادها نمایش برای فیلدها گرفتن
+         *
+         * @return array
+         */
+        public function fields()
+        {
+            return [
+
+                new Row([
+                    new Col('uk-width-2-3' , [
+                        new Panel('' , [
+                            ID::make()->rules('required')->onlyOnIndex()->sortable() ,
+                            Text::make('نام' , 'name')->rules('required') ,
+                            Password::make('رمز کاربر' , 'password')->help('برای تغیر نکردن رمز کادر را خالی بزارید') ,
+                            Text::make('ایمیل' , 'email')->rules('required' , 'max:255') ,
+                        ]) ,
+                    ]) ,
+
+                    new Col('uk-width-1-3' , [
+                        new Panel('مشخصات' , [
+                            Select::make('role_id' , 'role_id')->options(Role::all()->pluck('name','id')) ,
+                            Text::make('created_at' , 'created_at') ,
+                        ]) ,
+
+                        new RowOneColBg([
+                            btnSave::make() ,
+                        ]) ,
+                    ]) ,
+                ]) ,
+
+            ];
+        }
+
+        /**
+         * فیلترها
+         *
+         * @return array
+         */
+        public function filters()
+        {
+            return[];
+        }
+
+    }
+```
+
+
 ##  آپدیت کردن زرتشت 
 
 فقط کافیه `composer update` رو اجرا کنید .
