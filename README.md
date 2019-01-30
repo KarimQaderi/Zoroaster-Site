@@ -15,4 +15,4 @@ pageClass: welcome
 [خواندن مستندات](docs/1.0/installation.html)
 [مشاهدی پکیج ها](/packages.html)
 
-![Zoroaster](1.png)
+![Zoroaster](/1.png)
