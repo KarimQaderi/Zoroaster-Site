@@ -3,6 +3,7 @@ pageClass: welcome
 ---
 
 
+
 **خوش آمدید به زرتشت**
 
 
@@ -14,4 +15,4 @@ pageClass: welcome
 [خواندن مستندات](docs/1.0/installation.html)
 [مشاهدی پکیج ها](/packages.html)
 
-![Zoroaster](/assets/img/Zoroaster.png)
+![Zoroaster](1.png)
