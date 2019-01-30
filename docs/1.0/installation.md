@@ -118,11 +118,12 @@ php artisan Zoroaster:admin
 
 ```php
 use KarimQaderi\Zoroaster\Fields\Select;
+use KarimQaderi\Zoroaster\Models\Role;
 
 public function fields()
 {
     return [
-           Select::make('role_id' , 'role_id')->options(\KarimQaderi\Zoroaster\Models\Role::all()->pluck('name','id')),
+           Select::make('role_id' , 'role_id')->options(Role::all()->pluck('name','id')),
     ]
 }
 ```
