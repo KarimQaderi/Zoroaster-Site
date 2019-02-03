@@ -25,7 +25,7 @@ module.exports = {
   ],
 
   themeConfig: {
-    repo: 'https://github.com/KarimQaderi/zoroaster-docs',
+    repo: 'https://github.com/KarimQaderi/Zoroaster',
     // logo: '/assets/img/logo.svg',
     displayAllHeaders: true,
     sidebarDepth: 1,
