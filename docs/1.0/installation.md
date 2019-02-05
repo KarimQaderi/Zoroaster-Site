@@ -62,7 +62,7 @@ php artisan Zoroaster:user
 ## سطح دسترسی کلی 
 
 به طور پیش فرض، هر کاربری می تواند به داشبورد زرتشت وارد شود .
-برای اینکه سطع دسترسی رو بزارید فایل `app/Providers/ZoroasterServiceProvider.php` رو باز کنید کد زیر رو در `boot` قرار دهید. 
+برای اینکه سطح دسترسی رو بزارید فایل `app/Providers/ZoroasterServiceProvider.php` رو باز کنید کد زیر رو در `boot` قرار دهید. 
 
 ```php
 /**

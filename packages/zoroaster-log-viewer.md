@@ -36,9 +36,9 @@ description:  مشاهدی خطاها
 composer update
 ```
 
-## سطع دسترسی کلی 
+## سطح دسترسی کلی 
 
-برای اینکه سطع دسترسی رو بزارید فایل `app/Providers/ZoroasterServiceProvider.php` رو باز کنید کد زیر رو در `boot` قرار دهید. 
+برای اینکه سطح دسترسی رو بزارید فایل `app/Providers/ZoroasterServiceProvider.php` رو باز کنید کد زیر رو در `boot` قرار دهید. 
 
 ```php
 /**
