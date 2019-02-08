@@ -14,5 +14,6 @@ pageClass: welcome
 
 [خواندن مستندات](docs/1.0/installation.html)
 [مشاهدی پکیج ها](/packages.html)
+[مشاهدی آموزش های ویدیوی](/video.html)
 
 ![Zoroaster](https://raw.githubusercontent.com/KarimQaderi/Zoroaster-Site/master/1.png)
