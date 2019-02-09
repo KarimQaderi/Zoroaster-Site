@@ -8,6 +8,7 @@
 
 -   Composer
 -   Laravel Framework 5.6+
+-   PHP 7.1+
 
 ## پشتیبانی مرورگر 
 
