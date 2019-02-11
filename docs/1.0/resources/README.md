@@ -62,7 +62,7 @@ use App\Zoroaster\Resources\Post;
 
 ```
 
-## اضافه لینک Resource به Sidebar 
+## اضافه کردن لینک Resource به Sidebar 
 
 وقتی `resources` خود را ثبت می کنید برای نمایش دادن آن در **Sidebar** کناری بصورت زیر اقدام کنید
 
