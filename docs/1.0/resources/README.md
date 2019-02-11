@@ -62,6 +62,8 @@ use App\Zoroaster\Resources\Post;
 
 ```
 
+## اضافه لینک Resource به Sidebar 
+
 وقتی `resources` خود را ثبت می کنید برای نمایش دادن آن در **Sidebar** کناری بصورت زیر اقدام کنید
 
 اول به مسیر `app\Zoroaster\Other\Sidebar` رفته و داخل بخش `Menu` کد زیر رو قرار دهید .
@@ -69,6 +71,9 @@ use App\Zoroaster\Resources\Post;
 ```php
 
 use KarimQaderi\Zoroaster\Sidebar\FieldMenu\MenuItem;
+use App\Zoroaster\Resources\User;
+use App\Zoroaster\Resources\Post;
+use App\User as ModelUser;
 
 /**
  * قسمت منوی اصلی سایت
@@ -78,8 +83,8 @@ use KarimQaderi\Zoroaster\Sidebar\FieldMenu\MenuItem;
 public static function Menu()
 {
     return [
-        MenuItem::make()->resource('post')->icon('list') ,
-        MenuItem::make()->resource('user')->icon('users')->badge(User::count()) ,
+        MenuItem::make()->resource(Post::class)->icon('list') ,
+        MenuItem::make()->resource(User::class)->icon('users')->badge(ModelUser::count()) ,
     ];
 }
 ```
