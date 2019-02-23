@@ -27,6 +27,13 @@ php artisan migrate
 
 php artisan vendor:publish --tag=menu-builder-assets
 ```
+## توجه 
+
+اگر Resource مجوزها رو فعال کردید باید کد زیر رو هم بعد از کدهای بالا اجرا کنید.
+
+```bash
+php artisan Zoroaster:admin
+```
 
 
 ## Helper Function
