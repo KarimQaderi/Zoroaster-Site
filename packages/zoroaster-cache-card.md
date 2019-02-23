@@ -16,22 +16,8 @@ description:  خالی کردن کش
 
 ## نصب 
 
-فایل composer.json باز کنید و کد زیر رو قرار دهید :
-
-```json
-    "require": {
-        "karim-qaderi/zoroaster-cache-card": "*"
-    },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/KarimQaderi/Zoroaster-cache-card.git"
-        }
-    ],
-```
-
 ```bash
-composer update
+composer require karim-qaderi/zoroaster-cache-card
 ```
 
 ## استفاده 

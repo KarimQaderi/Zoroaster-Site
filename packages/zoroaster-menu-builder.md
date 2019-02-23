@@ -16,25 +16,11 @@ description:  برای ساخت منو می توانید ازش استفاده �
 
 
 ## نصب 
-
-فایل composer.json باز کنید و کد زیر رو قرار دهید :
-
-```json
-    "require": {
-        "karim-qaderi/zoroaster-menu-builder": "*"
-    },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/KarimQaderi/Zoroaster-Menu-Builder.git"
-        }
-    ],
-```
-
-بعد کدای زیر رو به ترتیب اجرا کنید :
+ 
+ کدای زیر رو به ترتیب اجرا کنید :
 
 ```bash
-composer update
+composer require karim-qaderi/zoroaster-menu-builder
 
 php artisan vendor:publish --tag=menu-builder-migration
 php artisan migrate

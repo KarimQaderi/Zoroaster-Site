@@ -15,22 +15,8 @@ description:  فیلتر گذاری رو ستون
 
 ## نصب 
 
-فایل composer.json باز کنید و کد زیر رو قرار دهید :
-
-```json
-    "require": {
-        "karim-qaderi/zoroaster-column-filter": "*"
-    },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/KarimQaderi/Zoroaster-Column-Filter.git"
-        }
-    ],
-```
-
 ```bash
-composer update
+composer require karim-qaderi/zoroaster-column-filter
 ```
 
 
